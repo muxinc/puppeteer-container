@@ -5,12 +5,12 @@ LABEL "com.github.actions.description"="A GitHub Action / Docker image for Puppe
 LABEL "com.github.actions.icon"="globe"
 LABEL "com.github.actions.color"="green"
 
-LABEL "repository"="http://github.com/ianwalter/puppeteer-container"
-LABEL "homepage"="http://github.com/ianwalter/puppeteer-container"
+LABEL "repository"="https://github.com/ianwalter/puppeteer-container"
+LABEL "homepage"="https://github.com/ianwalter/puppeteer-container"
 LABEL "maintainer"="Ian Walter <pub@ianwalter.dev>"
 
-RUN  sed -i 's|http://deb.debian.org/debian|http://archive.debian.org/debian|g' /etc/apt/sources.list \
-     && sed -i 's|http://security.debian.org/debian-security|http://archive.debian.org/debian-security|g' /etc/apt/sources.list \
+RUN  sed -i 's|http://deb.debian.org/debian|https://archive.debian.org/debian|g' /etc/apt/sources.list \
+     && sed -i 's|http://security.debian.org/debian-security|https://archive.debian.org/debian-security|g' /etc/apt/sources.list \
      && echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/99no-check-valid-until \
      && apt-get update \
      # See https://crbug.com/795759
@@ -23,7 +23,7 @@ RUN  sed -i 's|http://deb.debian.org/debian|http://archive.debian.org/debian|g' 
      && dpkg -i gcc-10-base_10-20200411-0ubuntu1_amd64.deb \
      && wget https://mirrors.edge.kernel.org/ubuntu/pool/main/g/gcc-10/libgcc-s1_10-20200411-0ubuntu1_amd64.deb \
      && dpkg -i libgcc-s1_10-20200411-0ubuntu1_amd64.deb \
-     && sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' \
+     && sh -c 'echo "deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' \
      && apt-get update \
      && apt-get install -y google-chrome-stable --no-install-recommends \
      && rm -rf /var/lib/apt/lists/*
